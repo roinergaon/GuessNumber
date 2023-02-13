@@ -13,15 +13,20 @@ def index():
 def welcome():
     return f"Welcome to the number guessing game!\nGuess a number between {min_range} and {max_range}."
 
-# Check if the number of arguments passed through sys.args is correct
+# Check if the number of arguments passed through sys.args is correct - input validation
 if len(sys.argv) != 4:
-    print("Wrong input - try again")
+    print("Wrong input - number of arguments are wrong please try again")
     sys.exit()
 
 # Retrieve the minimum and maximum range from the command line arguments
 port = int(sys.argv[1])
 min_range = int(sys.argv[2])
 max_range = int(sys.argv[3])
+
+# Input validation
+if max_range <= min_range:
+    print("Wrong input - min value isn't smaller than the max value please try again")
+    sys.exit()
 
 # Generate a random number in the specified range
 secret = random.randint(min_range, max_range)
