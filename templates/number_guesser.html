@@ -1,0 +1,31 @@
+<<!DOCTYPE html>
+<html>
+    <head>
+        <title>Number Guesser</title>
+    </head>
+    <body>
+        <h1>Welcome to the number guessing game!</h1>
+        <p>Guess a number between {{ min_range }} and {{ max_range }}:</p>
+        <form id="guess-form">
+            <input type="number" id="guess-input" min="0" max="100">
+            <button type="submit">Guess</button>
+        </form>
+        <p id="result"></p>
+        <script>
+            const form = document.getElementById('guess-form');
+            const input = document.getElementById('guess-input');
+            const result = document.getElementById('result');
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const response = await fetch('/guess', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `guess=${input.value}`
+                });
+                const message = await response.text();
+                result.textContent = message;
+            });
+        </script>
+    </body>
+</html>
