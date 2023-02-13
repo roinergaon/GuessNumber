@@ -15,7 +15,7 @@ def welcome():
 
 # Check if the number of arguments passed through sys.args is correct
 if len(sys.argv) != 4:
-    print("Usage: python number_guesser.py MIN MAX PORT")
+    print("Wrong input - try again")
     sys.exit()
 
 # Retrieve the minimum and maximum range from the command line arguments
